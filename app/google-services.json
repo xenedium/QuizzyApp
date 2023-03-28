@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "102802242449",
+    "project_id": "quizzyapp-bfd54",
+    "storage_bucket": "quizzyapp-bfd54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102802242449:android:e37d9354185751985db830",
+        "android_client_info": {
+          "package_name": "com.xeko.quizzyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102802242449-aet567ikpoprqi3iud2q384doa459kbj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xeko.quizzyapp",
+            "certificate_hash": "0c440754b32c0d24eacf0fd4fb4c2aca54129f24"
+          }
+        },
+        {
+          "client_id": "102802242449-1n9u0mqmiu40ndevhkbt93il29rh4dou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnSDmzohk4pDJlAXrnmqwb3O0u8adC8qw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102802242449-1n9u0mqmiu40ndevhkbt93il29rh4dou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
