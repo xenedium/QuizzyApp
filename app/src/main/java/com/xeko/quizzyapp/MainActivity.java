@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() == null) {
             // User not logged in - go to login screen
-            startActivity(new Intent(this, RegisterActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
+            return;
         }
 
         FirebaseUser user = mAuth.getCurrentUser();
