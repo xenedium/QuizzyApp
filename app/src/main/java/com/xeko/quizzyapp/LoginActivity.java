@@ -2,6 +2,7 @@ package com.xeko.quizzyapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     EditText mEmail, mPassword;
     Button mLoginBtn;
