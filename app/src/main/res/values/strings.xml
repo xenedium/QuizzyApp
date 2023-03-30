@@ -25,4 +25,11 @@
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="save_password">Change</string>
+    <string name="rules">Rules</string>
+    <string name="rules_description">blabla</string>
+    <string name="overall_points">Overall Points</string>
+    <string name="total_questions">Total Questions</string>
+    <string name="subject">Subject</string>
+    <string name="earned">Earned</string>
+    <string name="date">Date</string>
 </resources>

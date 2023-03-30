@@ -1,5 +1,6 @@
 package com.xeko.quizzyapp;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
@@ -12,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     CardView cvStartQuiz, cvRules, cvHistory, cvChangePassword, cvLogout;
     TextView username;
@@ -56,12 +57,12 @@ public class MainActivity extends Activity {
 
         // Handle Rules
         cvRules.setOnClickListener(v -> {
-            // startActivity(new Intent(this, RulesActivity.class));
+            startActivity(new Intent(this, RulesActivity.class));
         });
 
         // Handle History
         cvHistory.setOnClickListener(v -> {
-            // startActivity(new Intent(this, HistoryActivity.class));
+            startActivity(new Intent(this, HistoryActivity.class));
         });
 
         // Handle Start Quiz
