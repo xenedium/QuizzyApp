@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvItemHistory"
+    style="@style/cardViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/home_card_height"
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="8dp"
+    android:clickable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivSubjectItem"
+            android:layout_width="@dimen/start_quiz_image_view_size"
+            android:layout_height="@dimen/start_quiz_image_view_size"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logout" />
+
+        <TextView
+            android:id="@+id/tvSubjectItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            style="@style/categoryHeadingTextStyle"
+            app:layout_constraintBottom_toBottomOf="@+id/ivSubjectItem"
+            app:layout_constraintStart_toEndOf="@+id/ivSubjectItem"
+            app:layout_constraintTop_toTopOf="@+id/ivSubjectItem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

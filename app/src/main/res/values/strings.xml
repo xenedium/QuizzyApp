@@ -32,4 +32,5 @@
     <string name="subject">Subject</string>
     <string name="earned">Earned</string>
     <string name="date">Date</string>
+    <string name="quiz_option">Pick a topic</string>
 </resources>

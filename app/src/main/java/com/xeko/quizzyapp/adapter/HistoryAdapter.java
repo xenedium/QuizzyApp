@@ -40,9 +40,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         // convert date to a readable format DD/MM/YYYY
         holder.tvDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(result.getDate()));
 
-        holder.cvParent.setOnClickListener(v -> {
-            // TODO: Open result details
-        });
+        holder.cvParent.setOnClickListener(v -> {});
     }
 
     @Override

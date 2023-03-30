@@ -51,23 +51,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Handle Change Password
-        cvChangePassword.setOnClickListener(v -> {
-            startActivity(new Intent(this, ChangePasswordActivity.class));
-        });
+        cvChangePassword.setOnClickListener(v -> startActivity(new Intent(this, ChangePasswordActivity.class)));
 
         // Handle Rules
-        cvRules.setOnClickListener(v -> {
-            startActivity(new Intent(this, RulesActivity.class));
-        });
+        cvRules.setOnClickListener(v -> startActivity(new Intent(this, RulesActivity.class)));
 
         // Handle History
-        cvHistory.setOnClickListener(v -> {
-            startActivity(new Intent(this, HistoryActivity.class));
-        });
+        cvHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
 
         // Handle Start Quiz
-        cvStartQuiz.setOnClickListener(v -> {
-            // startActivity(new Intent(this, QuizActivity.class));
-        });
+        cvStartQuiz.setOnClickListener(v -> startActivity(new Intent(this, SubjectActivity.class)));
     }
 }
