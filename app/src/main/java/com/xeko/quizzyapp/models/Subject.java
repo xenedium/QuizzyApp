@@ -4,13 +4,19 @@ public class Subject {
     private String name;
     private String difficulty;
     private String image;
+    private String id;
 
     public Subject() {}
 
-    public Subject(String name, String difficulty, String image) {
+    public Subject(String name, String difficulty, String image, String id) {
         this.name = name;
         this.difficulty = difficulty;
         this.image = image;
+        this.id = id;
+    }
+
+    public Subject(Subject subject, String id) {
+        this(subject.getName(), subject.getDifficulty(), subject.getImage(), id);
     }
 
     public String getName() {
@@ -35,6 +41,13 @@ public class Subject {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

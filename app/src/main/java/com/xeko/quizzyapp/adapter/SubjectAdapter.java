@@ -1,14 +1,18 @@
 package com.xeko.quizzyapp.adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 import com.xeko.quizzyapp.R;
 import com.xeko.quizzyapp.models.Subject;
@@ -36,7 +40,23 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         holder.tvSubjectItem.setText(subject.getName());
         Picasso.get().load(subject.getImage()).into(holder.ivSubjectItem);
 
-        holder.ivSubjectItem.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("subjects").document(subject.getId());
+            db.collection("quizzes")
+                    .whereEqualTo("subject", docRef)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            if (task.getResult().isEmpty()) {
+                                Toast.makeText(v.getContext(), "No quiz available for this subject", Toast.LENGTH_SHORT).show();
+                            } else {
+
+                                Toast.makeText(v.getContext(), "Loading questions...", Toast.LENGTH_SHORT).show();
+                                ((Activity)v.getContext()).finish();
+                            }
+                        }
+                    });
             // TODO: Open quiz activity for this subject
         });
     }

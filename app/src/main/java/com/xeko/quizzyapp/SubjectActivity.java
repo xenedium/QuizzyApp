@@ -12,6 +12,7 @@ import com.xeko.quizzyapp.adapter.SubjectAdapter;
 import com.xeko.quizzyapp.models.Subject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SubjectActivity extends AppCompatActivity {
 
@@ -50,7 +51,7 @@ public class SubjectActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful())
                             for (int i = 0; i < task.getResult().size(); i++)
-                                subjectList.add(task.getResult().getDocuments().get(i).toObject(Subject.class));
+                                subjectList.add(new Subject(Objects.requireNonNull(task.getResult().getDocuments().get(i).toObject(Subject.class)), task.getResult().getDocuments().get(i).getId()));
                         lockedThread = false;
                     });
             while (lockedThread) {
