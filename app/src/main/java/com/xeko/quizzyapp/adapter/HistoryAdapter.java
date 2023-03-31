@@ -35,7 +35,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Result result = historyList.get(position);
 
-        holder.tvSubject.setText(result.getSubject());
+        result.getSubject().get().addOnSuccessListener(documentSnapshot -> {
+            holder.tvSubject.setText(documentSnapshot.getString("name"));
+        });
         holder.tvEarned.setText(result.getEarned());
         // convert date to a readable format DD/MM/YYYY
         holder.tvDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(result.getDate()));

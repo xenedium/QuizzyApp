@@ -1,29 +1,31 @@
 package com.xeko.quizzyapp.models;
 
+import com.google.firebase.firestore.DocumentReference;
+
 import java.util.Date;
 
 public class Result {
-    private String subject;
+    private DocumentReference subjectRef;
     private String earned;
     private Date date;
     private String email;
 
-    public Result(String subject, String earned, Date date) {
-        this.subject = subject;
+    public Result(DocumentReference subjectRef, String earned, Date date) {
+        this.subjectRef = subjectRef;
         this.earned = earned;
         this.date = date;
     }
-    public Result(String subject, String earned, Date date, String email) {
-        this(subject, earned, date);
+    public Result(DocumentReference subjectRef, String earned, Date date, String email) {
+        this(subjectRef, earned, date);
         this.email = email;
     }
     public Result() {}
 
-    public String getSubject() {
-        return subject;
+    public DocumentReference getSubject() {
+        return subjectRef;
     }
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setSubject(DocumentReference subjectRef) {
+        this.subjectRef = subjectRef;
     }
     public String getEarned() {
         return earned;
