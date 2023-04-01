@@ -1,6 +1,9 @@
 package com.xeko.quizzyapp.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +15,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
+import com.xeko.quizzyapp.HistoryActivity;
+import com.xeko.quizzyapp.MainActivity;
+import com.xeko.quizzyapp.QuestionActivity;
 import com.xeko.quizzyapp.R;
+import com.xeko.quizzyapp.models.Quiz;
 import com.xeko.quizzyapp.models.Subject;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
@@ -51,7 +61,17 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
                             if (task.getResult().isEmpty()) {
                                 Toast.makeText(v.getContext(), "No quiz available for this subject", Toast.LENGTH_SHORT).show();
                             } else {
-
+                                ArrayList<DocumentSnapshot> documentSnapshots = new ArrayList<>(task.getResult().getDocuments());
+                                Collections.shuffle(documentSnapshots);
+                                for (int i = 0; i < documentSnapshots.size(); i++) {
+                                    DocumentSnapshot documentSnapshot = documentSnapshots.get(i);
+                                    Intent intent = new Intent(v.getContext(), QuestionActivity.class);
+                                    Quiz quiz = documentSnapshot.toObject(Quiz.class);
+                                    intent.putExtra("quiz", quiz);
+                                    intent.putExtra("currentQuestion", task.getResult().size() - i - 1);
+                                    intent.putExtra("totalQuestions", task.getResult().size());
+                                    v.getContext().startActivity(intent);
+                                }
                                 Toast.makeText(v.getContext(), "Loading questions...", Toast.LENGTH_SHORT).show();
                                 ((Activity)v.getContext()).finish();
                             }

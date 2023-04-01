@@ -7,17 +7,20 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.firestore.DocumentReference;
 
-public class Quiz implements Parcelable {
+import java.io.Serializable;
+import java.util.List;
+
+public class Quiz implements Serializable {
     private String question;
     private String type;
     private String correct;
     private Integer timer;
-    private String[] options;
+    private List<String> options;
     private DocumentReference subjectRef;
 
     public Quiz() {}
 
-    public Quiz(String question, String type, String correct, Integer timer, String[] options, DocumentReference subjectRef) {
+    public Quiz(String question, String type, String correct, Integer timer, List<String> options, DocumentReference subjectRef) {
         this.question = question;
         this.type = type;
         this.correct = correct;
@@ -25,30 +28,6 @@ public class Quiz implements Parcelable {
         this.options = options;
         this.subjectRef = subjectRef;
     }
-
-    protected Quiz(Parcel in) {
-        question = in.readString();
-        type = in.readString();
-        correct = in.readString();
-        if (in.readByte() == 0) {
-            timer = null;
-        } else {
-            timer = in.readInt();
-        }
-        options = in.createStringArray();
-    }
-
-    public static final Creator<Quiz> CREATOR = new Creator<Quiz>() {
-        @Override
-        public Quiz createFromParcel(Parcel in) {
-            return new Quiz(in);
-        }
-
-        @Override
-        public Quiz[] newArray(int size) {
-            return new Quiz[size];
-        }
-    };
 
     public String getQuestion() {
         return question;
@@ -82,11 +61,11 @@ public class Quiz implements Parcelable {
         this.timer = timer;
     }
 
-    public String[] getOptions() {
+    public List<String> getOptions() {
         return options;
     }
 
-    public void setOptions(String[] options) {
+    public void setOptions(List<String> options) {
         this.options = options;
     }
 
@@ -98,18 +77,4 @@ public class Quiz implements Parcelable {
         this.subjectRef = subjectRef;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeString(type);
-        parcel.writeString(question);
-        parcel.writeString(correct);
-        parcel.writeInt(timer);
-        parcel.writeStringArray(options);
-
-    }
 }
