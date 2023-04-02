@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageViewRules" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/tvRules"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -39,7 +39,6 @@
         android:textSize="24sp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:text="@string/rules_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

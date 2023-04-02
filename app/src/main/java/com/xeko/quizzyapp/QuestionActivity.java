@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xeko.quizzyapp.models.GlobalState;
 import com.xeko.quizzyapp.models.Quiz;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -26,8 +27,9 @@ public class QuestionActivity extends AppCompatActivity {
 
         // get quiz object from intent
         Quiz quiz = (Quiz) getIntent().getSerializableExtra("quiz");
-        int currentQuestion = getIntent().getIntExtra("currentQuestion", 0);
-        int totalQuestions = getIntent().getIntExtra("totalQuestions", 0);
+
+        int currentQuestion = GlobalState.getInstance().getCurrentQuestion();
+        int totalQuestions = GlobalState.getInstance().getTotalQuestions();
 
         tvQuestion = findViewById(R.id.tvQuestion);
         tvCurrentQuestion = findViewById(R.id.tvCurrentQuestion);
@@ -46,41 +48,33 @@ public class QuestionActivity extends AppCompatActivity {
         radioButton4.setText(quiz.getOptions().get(3));
 
         btnNextQuestion.setOnClickListener(v -> {
-            if (radioButton1.isChecked() || radioButton2.isChecked() || radioButton3.isChecked() || radioButton4.isChecked()) {
-                if (radioButton1.isChecked()) {
-                    if (quiz.getOptions().get(0).equals(quiz.getCorrect())) {
-                        Toast.makeText(this, "Correct, Moving to next question", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Wrong, Moving to next question", Toast.LENGTH_SHORT).show();
-                    }
-                } else if (radioButton2.isChecked()) {
-                    if (quiz.getOptions().get(1).equals(quiz.getCorrect())) {
-                        Toast.makeText(this, "Correct, Moving to next question", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Wrong, Moving to next question", Toast.LENGTH_SHORT).show();
-                    }
-                } else if (radioButton3.isChecked()) {
-                    if (quiz.getOptions().get(2).equals(quiz.getCorrect())) {
-                        Toast.makeText(this, "Correct, Moving to next question", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Wrong, Moving to next question", Toast.LENGTH_SHORT).show();
-                    }
-                } else if (radioButton4.isChecked()) {
-                    if (quiz.getOptions().get(3).equals(quiz.getCorrect())) {
-                        Toast.makeText(this, "Correct, Moving to next question", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Wrong, Moving to next question", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                finish();
-            } else {
+            if (!radioButton1.isChecked() && !radioButton2.isChecked() && !radioButton3.isChecked() && !radioButton4.isChecked()) {
                 Toast.makeText(this, "Please select an option", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            String message = "Wrong, Moving to next question";
+            if ((radioButton1.isChecked() && quiz.getOptions().get(0).equals(quiz.getCorrect()))
+                    || (radioButton2.isChecked() && quiz.getOptions().get(1).equals(quiz.getCorrect()))
+                    || (radioButton3.isChecked() && quiz.getOptions().get(2).equals(quiz.getCorrect()))
+                    || (radioButton4.isChecked() && quiz.getOptions().get(3).equals(quiz.getCorrect())))
+            {
+                message = "Correct, Moving to next question";
+                GlobalState.getInstance().incrementScore();
+            }
+
+
+
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            GlobalState.getInstance().nextQuestion(v);
+            finish();
         });
 
     }

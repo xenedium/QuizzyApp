@@ -22,6 +22,8 @@ import com.xeko.quizzyapp.HistoryActivity;
 import com.xeko.quizzyapp.MainActivity;
 import com.xeko.quizzyapp.QuestionActivity;
 import com.xeko.quizzyapp.R;
+import com.xeko.quizzyapp.ResultActivity;
+import com.xeko.quizzyapp.models.GlobalState;
 import com.xeko.quizzyapp.models.Quiz;
 import com.xeko.quizzyapp.models.Subject;
 
@@ -63,21 +65,25 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
                             } else {
                                 ArrayList<DocumentSnapshot> documentSnapshots = new ArrayList<>(task.getResult().getDocuments());
                                 Collections.shuffle(documentSnapshots);
+                                Toast.makeText(v.getContext(), "Loading questions...", Toast.LENGTH_SHORT).show();
+                                GlobalState.getInstance().reset();
                                 for (int i = 0; i < documentSnapshots.size(); i++) {
                                     DocumentSnapshot documentSnapshot = documentSnapshots.get(i);
                                     Intent intent = new Intent(v.getContext(), QuestionActivity.class);
                                     Quiz quiz = documentSnapshot.toObject(Quiz.class);
                                     intent.putExtra("quiz", quiz);
-                                    intent.putExtra("currentQuestion", task.getResult().size() - i - 1);
-                                    intent.putExtra("totalQuestions", task.getResult().size());
-                                    v.getContext().startActivity(intent);
+                                    GlobalState.getInstance().addIntent(intent);
+                                    // v.getContext().startActivity(intent);
                                 }
-                                Toast.makeText(v.getContext(), "Loading questions...", Toast.LENGTH_SHORT).show();
+                                GlobalState.getInstance().setSubjectName(subject.getName());
+                                GlobalState.getInstance().setSubjectId(subject.getId());
+                                GlobalState.getInstance().addIntent(new Intent(v.getContext(), ResultActivity.class));
+                                GlobalState.getInstance().setTotalQuestions(documentSnapshots.size());
+                                v.getContext().startActivity(GlobalState.getInstance().getIntent(0));
                                 ((Activity)v.getContext()).finish();
                             }
                         }
                     });
-            // TODO: Open quiz activity for this subject
         });
     }
 
