@@ -37,6 +37,6 @@
     <string name="final_result">Final Result</string>
     <string name="correct">Correct</string>
     <string name="incorrect">Incorrect</string>
-    <string name="start_again">Go back</string>
+    <string name="start_again">Save your results</string>
     <string name="total_question">Total Questions</string>
 </resources>

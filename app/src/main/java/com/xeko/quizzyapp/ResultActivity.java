@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -21,6 +22,17 @@ public class ResultActivity extends AppCompatActivity {
     TextView tvWellDone, tvCorrect, tvIncorrect, tvEarned, tvDate, tvSubject, tvTotalQuestions;
     Button btnFinishQuiz;
 
+    boolean saving = false;
+
+    @Override
+    public void onBackPressed() {
+        if (!saving) {
+            super.onBackPressed();
+            GlobalState.getInstance().reset();
+            return;
+        }
+        Toast.makeText(this, "Your results are saving, please wait", Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +62,34 @@ public class ResultActivity extends AppCompatActivity {
         tvEarned.setText(String.valueOf(earned));
         tvDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
 
-        DocumentReference subjectRef = FirebaseFirestore.getInstance().collection("subjects").document(GlobalState.getInstance().getSubjectId());
+
+
         btnFinishQuiz.setOnClickListener(v -> {
+            if (saving) {
+                return;
+            }
+            saving = true;
+            // Save result to database
+            DocumentReference subjectRef = FirebaseFirestore.getInstance().collection("subjects").document(GlobalState.getInstance().getSubjectId());
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("results").add(new HashMap<String, Object>() {{
                 put("date", new Date());
                 put("earned", String.valueOf(earned));
                 put("email", name);
                 put("subject", subjectRef);
-            }});
-            GlobalState.getInstance().reset();
-            finish();
+            }}).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ResultActivity.this, "Result saved", Toast.LENGTH_SHORT).show();
+                    saving = false;
+                    finish();
+                    GlobalState.getInstance().reset();
+                }
+                else {
+                    Toast.makeText(ResultActivity.this, "Error saving result", Toast.LENGTH_SHORT).show();
+                    saving = false;
+                }
+            });
         });
+
     }
 }

@@ -18,7 +18,17 @@ public class QuestionActivity extends AppCompatActivity {
     Button btnNextQuestion;
     RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
 
-
+    boolean backPressed = false;
+    @Override
+    public void onBackPressed() {
+        if (backPressed) {
+            super.onBackPressed();
+            GlobalState.getInstance().reset();
+            return;
+        }
+        this.backPressed = true;
+        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+    }
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +56,7 @@ public class QuestionActivity extends AppCompatActivity {
         radioButton2.setText(quiz.getOptions().get(1));
         radioButton3.setText(quiz.getOptions().get(2));
         radioButton4.setText(quiz.getOptions().get(3));
+
 
         btnNextQuestion.setOnClickListener(v -> {
             if (!radioButton1.isChecked() && !radioButton2.isChecked() && !radioButton3.isChecked() && !radioButton4.isChecked()) {
