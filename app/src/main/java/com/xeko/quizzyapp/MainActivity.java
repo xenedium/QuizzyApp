@@ -6,10 +6,12 @@ import androidx.cardview.widget.CardView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     CardView cvStartQuiz, cvRules, cvHistory, cvChangePassword, cvLogout;
     TextView username;
+    ImageView ivStart, ivRules, ivHistory, ivPassword, ivLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
         cvChangePassword = findViewById(R.id.cvChangePassword);
         cvLogout = findViewById(R.id.cvLogout);
         username = findViewById(R.id.username);
+
+        // Get icons
+        ivStart = findViewById(R.id.ivStart);
+        ivRules = findViewById(R.id.ivRules);
+        ivHistory = findViewById(R.id.ivHistory);
+        ivPassword = findViewById(R.id.ivPassword);
+        ivLogout = findViewById(R.id.ivLogout);
+
+        Picasso.get().load("https://xene.fra1.digitaloceanspaces.com/start-button.png").into(ivStart);
+        Picasso.get().load("https://xene.fra1.digitaloceanspaces.com/rules.png").into(ivRules);
+        Picasso.get().load("https://xene.fra1.digitaloceanspaces.com/history.png").into(ivHistory);
+        Picasso.get().load("https://xene.fra1.digitaloceanspaces.com/key.png").into(ivPassword);
+        Picasso.get().load("https://xene.fra1.digitaloceanspaces.com/logout.png").into(ivLogout);
 
         // Set username
         FirebaseUser user = mAuth.getCurrentUser();

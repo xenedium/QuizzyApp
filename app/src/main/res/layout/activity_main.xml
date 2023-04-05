@@ -69,14 +69,13 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ivStart"
                     android:layout_width="@dimen/home_image_view_size"
                     android:layout_height="@dimen/home_image_view_size"
                     android:layout_marginStart="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/quiz" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -85,9 +84,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="@string/start_quiz"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                    app:layout_constraintBottom_toBottomOf="@+id/ivStart"
+                    app:layout_constraintStart_toEndOf="@+id/ivStart"
+                    app:layout_constraintTop_toTopOf="@+id/ivStart" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -109,15 +108,14 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/ivRules"
                     android:layout_width="@dimen/home_image_view_size"
                     android:layout_height="@dimen/home_image_view_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.35"
-                    app:srcCompat="@drawable/rules" />
+                    app:layout_constraintVertical_bias="0.35" />
 
                 <TextView
                     style="@style/categoryHeadingTextStyle"
@@ -127,7 +125,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivRules" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -148,15 +146,14 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/ivHistory"
                     android:layout_width="@dimen/home_image_view_size"
                     android:layout_height="@dimen/home_image_view_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintVertical_bias="0.35"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/history" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     style="@style/categoryHeadingTextStyle"
@@ -166,7 +163,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivHistory" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -188,10 +185,9 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/ivPassword"
                     android:layout_width="@dimen/home_image_view_size"
                     android:layout_height="@dimen/home_image_view_size"
-                    android:src="@drawable/keys"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +202,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivPassword" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,10 +223,9 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/ivLogout"
                     android:layout_width="@dimen/home_image_view_size"
                     android:layout_height="@dimen/home_image_view_size"
-                    android:src="@drawable/logout"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -245,19 +240,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-
+                    app:layout_constraintTop_toBottomOf="@+id/ivLogout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
         </androidx.cardview.widget.CardView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
